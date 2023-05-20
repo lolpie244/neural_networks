@@ -15,6 +15,3 @@ class DataProcessor(ABC):
     def normilize(self):
         pass
 
-    @abstractmethod
-    def to_vector(self) -> Cache:
-        pass

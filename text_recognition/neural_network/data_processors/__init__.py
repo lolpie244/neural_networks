@@ -1,0 +1,2 @@
+from neural_network.data_processors.excel_processor import DataFrameProcessor
+from neural_network.data_processors.normalization import StructuredDataNormilize

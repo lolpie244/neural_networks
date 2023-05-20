@@ -1,12 +1,12 @@
 import numpy as np
 
 from .abstract_layer import Layer
-from neural_network.activation_functions import ActivationFunction
+from neural_network.functions import Function
 from neural_network.utils import Cache
 
 
 class ClasificationLayer(Layer):
-    def __init__(self, activation_function: ActivationFunction, neurons_count: int) -> None:
+    def __init__(self, neurons_count: int, activation_function: Function) -> None:
         self.activation_function = activation_function
         self.neurons_count = neurons_count
 
@@ -34,7 +34,7 @@ class ClasificationLayer(Layer):
             linear=linear,
             input_data=input_data,
         )
-        return self.activation_function.function(linear)
+        return self.activation_function(linear)
 
     def backward(self, input_data: np.ndarray, alpha):
         m = input_data.shape[1]
