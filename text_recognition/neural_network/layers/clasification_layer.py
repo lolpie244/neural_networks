@@ -45,8 +45,8 @@ class ClasificationLayer(Layer):
 
         dA = np.dot(self.weights.T, dz)
 
-        self.weights = self.weights - alpha * dw
-        self.bias = self.bias - alpha * db
+        self.weights -= alpha * dw
+        self.bias -= alpha * db
 
         return dA
 
