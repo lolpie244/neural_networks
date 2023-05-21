@@ -1,7 +1,7 @@
 from neural_network.data_processors.normalization import DataFrameNormalize, OnlyDummyNormalize
 from neural_network.layers_container import LayersConteiner
 from neural_network.functions.activations import Relu, Sigmoid
-from neural_network.functions.errors import CrossEntropy
+from neural_network.functions.cost import CrossEntropy
 from neural_network.layers import ClasificationLayer
 from neural_network.data_processors import DataFrameProcessor
 
@@ -10,8 +10,7 @@ from sklearn.datasets import load_iris
 
 
 neural_network = LayersConteiner(
-    ClasificationLayer(10, Sigmoid()),
-    ClasificationLayer(10, Sigmoid()),
+    ClasificationLayer(10, Relu()),
     ClasificationLayer(3, Sigmoid()),
 )
 
@@ -32,4 +31,4 @@ results = neural_network.predict(test_dataset.x)
 print(*map(list, test_dataset.y), "#"*100, sep='\n')
 row_format = "{:^4}|" * len(test_dataset.y[0])
 for x in results:
-    print(f"[{row_format.format(*map(lambda k: str(k), x))}]")
+    print(f"[{row_format.format(*map(lambda k: str(k)[:4], x))}]")

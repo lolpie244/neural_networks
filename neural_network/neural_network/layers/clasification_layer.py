@@ -1,4 +1,3 @@
-from typing import Optional
 import numpy as np
 
 from .abstract_layer import Layer
@@ -35,8 +34,6 @@ class ClasificationLayer(Layer):
         return self.activation_function(linear)
 
     def backward(self, input_data: np.ndarray, alpha):
-        m = input_data.shape[1]
-
         dz = input_data * self.activation_function.derivative(self.cache.linear)
         dw = np.dot(dz, self.cache.input_data.T)
         db = np.sum(dz, axis=1, keepdims=True)
