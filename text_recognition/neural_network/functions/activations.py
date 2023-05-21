@@ -4,7 +4,7 @@ import numpy as np
 
 class Relu(Function):
     def __call__(self, neurons: np.ndarray) -> np.ndarray:
-        return np.max(0, neurons)
+        return np.maximum(0, neurons)
 
     def derivative(self, neurons: np.ndarray) -> np.ndarray:
         return np.where(neurons < 0, 0, 1)

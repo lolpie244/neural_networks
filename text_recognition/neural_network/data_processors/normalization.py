@@ -1,8 +1,11 @@
+from typing import Any
+
+from scipy.sparse import data
 from .abstract_data_processor import Normalize
 import pandas as pd
 
 
-class StructuredDataNormilize(Normalize):
+class DataFrameNormalize(Normalize):
     def __init__(self, normilize_coefs=None) -> None:
         self.normilize_coefs = normilize_coefs
 
@@ -21,3 +24,21 @@ class StructuredDataNormilize(Normalize):
             new_dataset[column] = (dataset[column] - min) / (max - min)
 
         return new_dataset
+
+
+class OnlyDummyNormalize(Normalize):
+    def normilize(self, dataset: pd.DataFrame) -> pd.DataFrame:
+        if isinstance(dataset, pd.Series):
+            dataset = dataset.to_frame()
+
+        return pd.get_dummies(
+            dataset,
+            columns=[column for column in dataset.columns],
+        )
+
+
+class EmptyNormalize(Normalize):
+    def normilize(self, dataset) -> Any:
+        if isinstance(dataset, pd.Series):
+            dataset = dataset.to_frame()
+        return dataset
