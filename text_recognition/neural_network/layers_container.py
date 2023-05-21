@@ -6,7 +6,7 @@ class LayersConteiner:
     def __init__(self, *args: Layer) -> None:
         self.layers_list = args
 
-    def train(self, X, Y, loss_function: Function, iterations=1000, alpha=0.001):
+    def train(self, X, Y, loss_function: Function, iterations=2000, alpha=0.01):
         for _ in range(iterations):
             current_activation = X
 

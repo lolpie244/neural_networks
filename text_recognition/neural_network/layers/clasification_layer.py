@@ -38,8 +38,8 @@ class ClasificationLayer(Layer):
         m = input_data.shape[1]
 
         dz = input_data * self.activation_function.derivative(self.cache.linear)
-        dw = np.dot(dz, self.cache.input_data.T) / m
-        db = np.sum(dz, axis=1, keepdims=True) / m
+        dw = np.dot(dz, self.cache.input_data.T)
+        db = np.sum(dz, axis=1, keepdims=True)
 
         dA = np.dot(self.weights.T, dz)
 
