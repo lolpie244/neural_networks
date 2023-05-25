@@ -160,4 +160,4 @@ cython_debug/
 #.idea/
 
 .run_selected
-dataset.csv
+dataset*.csv
